@@ -1,0 +1,25 @@
+.container {
+    border: none;
+    z-index: 10;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.25rem;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #0094ff;
+    color: white;
+}
+
+.secondary {
+    padding: 0;
+    color: #0094ff;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.disabled {
+    background-color: #C3CEDA;
+    cursor: not-allowed;
+}
