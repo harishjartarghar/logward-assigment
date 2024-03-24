@@ -1,9 +1,9 @@
 {
-  "name": "axiamatic",
+  "name": "logward-assigment",
   "version": "1.0.0",
-  "description": "Axiamatic UI Task",
+  "description": "Logward Assigment",
   "main": "index.js",
-  "repository": "https://github.com/harishjartarghar/axiamatic-ui-challenge",
+  "repository": "https://github.com/harishjartarghar/logward-assigment",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
