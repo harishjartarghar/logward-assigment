@@ -19,6 +19,11 @@
     font-weight: 600;
 }
 
+.plain {
+    padding: 0;
+    background: transparent;
+}
+
 .disabled {
     background-color: #C3CEDA;
     cursor: not-allowed;

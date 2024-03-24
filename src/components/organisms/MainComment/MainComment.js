@@ -12,7 +12,7 @@ const MainComment = ({ name, comment, id, replies }) => {
     const [showReply, setShowReply] = useState(false);
     const [editCommentId, setEditCommentId] = useState();
 
-    const { handleEditComment, handleReplyComment, handleDeleteComment, handleDeleteReplyComment, data } = useComments()
+    const { handleEditComment, handleReplyComment, handleDeleteComment, handleDeleteReplyComment, data, isSortAsc } = useComments()
 
     // Inside the component:
     const handleOnBlur = (event) => {

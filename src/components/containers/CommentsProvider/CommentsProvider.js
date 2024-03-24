@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import CommentsContext from "@/context/CommentsContext";
 import { getValueFromLocalStorage, setValueInLocalStorage } from "@/base/utils/localStorage";
 
-import { STORAGE_KEYS } from "@/base/constants/common.constants";
+import { SORT_TYPES, STORAGE_KEYS } from "@/base/constants/common.constants";
 
 
 /*
@@ -23,7 +23,7 @@ data:{
 */
 
 const CommentsProvider = ({ children }) => {
-
+    const [sort, setSort] = useState(SORT_TYPES.ASC);
     const [comments, setComments] = useState(() => {
         const savedItem = getValueFromLocalStorage(STORAGE_KEYS.COMMENTS);
         const parsedItem = JSON.parse(savedItem);
@@ -41,7 +41,12 @@ const CommentsProvider = ({ children }) => {
 
     useEffect(() => {
         setValueInLocalStorage(STORAGE_KEYS.COMMENTS, JSON.stringify(comments))
-    }, [comments])
+    }, [comments]);
+
+
+    const handleToggleSort = useCallback(() => {
+        setSort(prev => prev === SORT_TYPES.ASC ? SORT_TYPES.DESC : SORT_TYPES.ASC)
+    }, [])
 
     const handleAddComment = useCallback(({ name, comment }) => {
         const id = Date.now();
@@ -95,6 +100,8 @@ const CommentsProvider = ({ children }) => {
     const contextValues = useMemo(() => ({
         comments,
         data,
+        isSortAsc: sort === SORT_TYPES.ASC,
+        handleToggleSort,
         handleAddComment,
         handleEditComment,
         handleReplyComment,
@@ -103,6 +110,8 @@ const CommentsProvider = ({ children }) => {
     }), [
         comments,
         data,
+        sort,
+        handleToggleSort,
         handleAddComment,
         handleEditComment,
         handleReplyComment,
