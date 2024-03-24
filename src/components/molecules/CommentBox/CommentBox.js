@@ -6,6 +6,8 @@ import Input from "@/components/atoms/Input";
 import TextArea from "@/components/atoms/TextArea";
 import Button from "@/components/atoms/Button";
 
+import { LABELS } from "@/base/constants/label.constants";
+
 import styles from './comment.module.scss';
 
 const CommentBox = ({ name: defaultName, comment: defaultComment, label, onSubmit, id, parentId, editComment }) => {
@@ -14,7 +16,7 @@ const CommentBox = ({ name: defaultName, comment: defaultComment, label, onSubmi
 
     const handleSubmit = useCallback(() => {
 
-        if (!name || !comment) return;
+        if (!name.trim() || !comment.trim()) return;
 
         onSubmit({ name, comment, ...(parentId && { parentId }), ...({ id }) });
 
@@ -26,9 +28,9 @@ const CommentBox = ({ name: defaultName, comment: defaultComment, label, onSubmi
     return (
         <div className={styles.container}>
             <p>{label}</p>
-            <Input value={name} onChange={setName} placeholder="Name" disabled={editComment} />
-            <TextArea value={comment} onChange={setComment} placeholder="Comment" focus={editComment} />
-            <Button onClick={handleSubmit} label={"POST"} className={styles.buttonContainer} />
+            <Input value={name} onChange={setName} placeholder={LABELS.NAME} disabled={editComment} />
+            <TextArea value={comment} onChange={setComment} placeholder={LABELS.COMMENT} focus={editComment} />
+            <Button onClick={handleSubmit} label={LABELS.POST} className={styles.buttonContainer} />
         </div>)
 }
 
@@ -49,7 +51,7 @@ CommentBox.defaultProps = {
     comment: '',
     parentId: '',
     id: '',
-    label: "Comment",
+    label: LABELS.COMMENT,
     onSubmit: () => { },
     editComment: false
 

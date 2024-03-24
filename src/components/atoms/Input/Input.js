@@ -21,10 +21,12 @@ Input.propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
+    disabled: PropTypes.bool
 }
 
 Input.defaultProps = {
     value: '',
     placeholder: '',
     onChange: () => { },
+    disabled: false
 }

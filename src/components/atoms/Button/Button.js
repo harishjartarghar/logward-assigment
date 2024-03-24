@@ -3,8 +3,8 @@ import cx from 'classnames';
 import PropTypes from "prop-types";
 
 
-import styles from './button.module.scss'
 import { BUTTON_VARIATIONS } from "./button.constants";
+import styles from './button.module.scss'
 
 const NextButton = ({ variation, disabled, onClick, label, className, endIcon }) => {
     return (
@@ -21,11 +21,17 @@ export default NextButton
 NextButton.propTypes = {
     variation: PropTypes.string,
     disabled: PropTypes.bool,
-    onClick: PropTypes.bool
+    onClick: PropTypes.bool,
+    label: PropTypes.string,
+    className: PropTypes.string,
+    endIcon: PropTypes.node
 }
 
 NextButton.defaultProps = {
     variation: BUTTON_VARIATIONS.PRIMARY,
     disabled: false,
-    onClick: () => { }
+    onClick: () => { },
+    label: '',
+    className: '',
+    endIcon: null
 }

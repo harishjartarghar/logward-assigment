@@ -6,24 +6,21 @@ import Button, { BUTTON_VARIATIONS } from "@/components/atoms/Button";
 import { AiTwotoneDelete } from "react-icons/ai";
 
 import styles from './comment.module.scss';
+import { LABELS } from "@/base/constants/label.constants";
 
 const Comment = ({ name, comment, id, showReplyCTA, showEditCTA, handleReplyCTA, handleEditCTA, handleDeleteCTA }) => {
     const date = new Date(id);
-    const month = date.toLocaleString('default', { month: 'long' });
-    const year = date.getUTCFullYear()
-    const exactDate = date.getDate()
-
 
     return (
         <div className={styles.container}>
             <div className={styles.nameDateContainer}>
                 <p>{name}</p>
-                <p>{`${exactDate} ${month}, ${year}`}</p>
+                <p>{`${date.getDate()} ${date.toLocaleString('default', { month: 'long' })}, ${date.getUTCFullYear()}`}</p>
             </div>
             <p>{comment}</p>
             <div className={styles.actions}>
-                {showReplyCTA && <Button variation={BUTTON_VARIATIONS.SECONDARY} label={"Reply"} onClick={handleReplyCTA} />}
-                {showEditCTA && <Button variation={BUTTON_VARIATIONS.SECONDARY} label={"Edit"} onClick={handleEditCTA} />}
+                {showReplyCTA && <Button variation={BUTTON_VARIATIONS.SECONDARY} label={LABELS.REPLY} onClick={handleReplyCTA} />}
+                {showEditCTA && <Button variation={BUTTON_VARIATIONS.SECONDARY} label={LABELS.EDIT} onClick={handleEditCTA} />}
             </div>
             <div onClick={handleDeleteCTA} className={styles.deleteContainer}>
                 <AiTwotoneDelete />

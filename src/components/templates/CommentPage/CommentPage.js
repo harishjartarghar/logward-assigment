@@ -10,22 +10,22 @@ import useComments from "@/hooks/useComments";
 import Button, { BUTTON_VARIATIONS } from "@/components/atoms/Button";
 
 import styles from './commentPage.module.scss'
+import { LABELS } from "@/base/constants/label.constants";
 
 
 const CommentPage = () => {
-
-    const { handleAddComment, handleToggleSort, isSortAsc } = useComments();
+    const { handleAddComment, handleToggleSort, isSortAsc, comments } = useComments();
 
     return (
         <div className={styles.container}>
             <CommentBox onSubmit={handleAddComment} />
-            <Button
+            {comments.length > 0 && <Button
                 variation={BUTTON_VARIATIONS.PLAIN}
-                label={"Sort By: Date And Time"}
+                label={LABELS.SORT}
                 endIcon={isSortAsc ? <AiOutlineArrowDown /> : <AiOutlineArrowUp />}
                 className={styles.button}
                 onClick={handleToggleSort}
-            />
+            />}
             <CommentSection />
         </div>
     )
