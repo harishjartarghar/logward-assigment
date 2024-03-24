@@ -1,4 +1,5 @@
 .container {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -20,4 +21,14 @@
 .actions {
     display: flex;
     gap: 1rem;
+}
+
+.deleteContainer {
+    position: absolute;
+    right: -0.8rem;
+    top: 40%;
+    background-color: #575757;
+    border-radius: 2rem;
+    padding: 4px 6px;
+    cursor: pointer;
 }

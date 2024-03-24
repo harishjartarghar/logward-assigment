@@ -70,9 +70,27 @@ const CommentsProvider = ({ children }) => {
 
     }, [data]);
 
-    const handleDeleteComment = useCallback(() => {
-
+    const handleDeleteComment = useCallback(({ id }) => {
+        setComments((comments) => comments.filter((commentId) => commentId !== id));
+        setData(prev => {
+            const newPrev = { ...prev };
+            const { replies } = prev[id];
+            delete newPrev[id]
+            for (const replyId of replies) delete newPrev[replyId];
+            return newPrev;
+        })
     }, []);
+
+    const handleDeleteReplyComment = useCallback(({ id, parentId }) => {
+        const parentComment = data[parentId];
+        const { replies } = parentComment;
+        const filteredReplies = replies.filter((commentId) => commentId !== id)
+        setData(prev => {
+            const newPrev = { ...prev };
+            delete newPrev[id];
+            return ({ ...newPrev, [parentId]: { ...parentComment, replies: filteredReplies } })
+        });
+    }, [data]);
 
     const contextValues = useMemo(() => ({
         comments,
@@ -80,14 +98,16 @@ const CommentsProvider = ({ children }) => {
         handleAddComment,
         handleEditComment,
         handleReplyComment,
-        handleDeleteComment
+        handleDeleteComment,
+        handleDeleteReplyComment
     }), [
         comments,
         data,
         handleAddComment,
         handleEditComment,
         handleReplyComment,
-        handleDeleteComment
+        handleDeleteComment,
+        handleDeleteReplyComment
     ])
 
     return (
